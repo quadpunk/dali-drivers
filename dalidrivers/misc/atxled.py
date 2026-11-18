@@ -1,5 +1,5 @@
 from dali.command import Command
-from dali.driver.base import SyncDALIDriver, DALIDriver
+from dalidrivers.misc.base import SyncDALIDriver, DALIDriver
 from dali.frame import BackwardFrame
 import logging
 import sys

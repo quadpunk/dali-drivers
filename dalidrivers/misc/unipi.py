@@ -18,7 +18,7 @@ if PYMODBUS_VERSION >= version.parse("3.0.0"):
 else:
     from pymodbus.client.sync import ModbusSerialClient, ModbusTcpClient
 
-from dali.driver.base import DALIDriver, SyncDALIDriver
+from dalidrivers.misc.base import DALIDriver, SyncDALIDriver
 from dali.frame import BackwardFrame, ForwardFrame
 from dali.gear.general import Compare
 

@@ -1,9 +1,9 @@
 from dali.command import from_frame
-from dali.driver.base import AsyncDALIDriver
-from dali.driver.base import DALIDriver
-from dali.driver.base import SyncDALIDriver
-from dali.driver.usb import USBBackend
-from dali.driver.usb import USBListener
+from dalidrivers.misc.base import AsyncDALIDriver
+from dalidrivers.misc.base import DALIDriver
+from dalidrivers.misc.base import SyncDALIDriver
+from dalidrivers.misc.usb import USBBackend
+from dalidrivers.misc.usb import USBListener
 from dali.frame import BackwardFrame
 from dali.frame import ForwardFrame
 import logging

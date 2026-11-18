@@ -1,7 +1,7 @@
 import threading
 import usb
 
-from dali.driver.base import Backend, Listener
+from dalidrivers.misc.base import Backend, Listener
 
 
 ###############################################################################

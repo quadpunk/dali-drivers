@@ -54,7 +54,7 @@ from dalidrivers.misc.serial import DistributorQueue, DriverSerialBase
 from dali.memory.location import MemoryBank
 from dali.tests import fakes as dali_fakes
 
-_LOG = logging.getLogger("dali.driver")
+_LOG = logging.getLogger("dalidrivers.misc")
 
 
 class DriverSerialDummy(DriverSerialBase):

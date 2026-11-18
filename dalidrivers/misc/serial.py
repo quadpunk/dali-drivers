@@ -34,11 +34,11 @@ import serialx
 
 import dali.gear
 from dali import command, frame, gear, sequences
-from dali.driver import trace_logging  # noqa: F401
+from dalidrivers.misc import trace_logging  # noqa: F401
 from dali.device.helpers import DeviceInstanceTypeMapper
 from dali.exceptions import TransmissionError
 
-_LOG = logging.getLogger("dali.driver")
+_LOG = logging.getLogger("dalidrivers.misc")
 
 # Sentinel placed on the raw DALI response queue when the interface reports a
 # framing error, so a waiting query returns an error response instead of

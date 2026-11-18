@@ -2,9 +2,9 @@ import logging
 import struct
 from time import sleep
 
-from dali.driver.base import AsyncDALIDriver
-from dali.driver.base import DALIDriver
-from dali.driver.base import SyncDALIDriver
+from dalidrivers.misc.base import AsyncDALIDriver
+from dalidrivers.misc.base import DALIDriver
+from dalidrivers.misc.base import SyncDALIDriver
 from dali.frame import BackwardFrame
 from dali.frame import BackwardFrameError
 

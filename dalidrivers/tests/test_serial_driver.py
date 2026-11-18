@@ -50,7 +50,7 @@ async def test_reset_dali_response_drains_all_without_critical(caplog):
     protocol._queue_rx_raw_dali.put_nowait(7)
     protocol._queue_rx_raw_dali.put_nowait(8)
 
-    with caplog.at_level(logging.DEBUG, logger="dali.driver"):
+    with caplog.at_level(logging.DEBUG, logger="dalidrivers.misc"):
         protocol.reset_dali_response()
 
     assert protocol._queue_rx_raw_dali.empty()
@@ -69,7 +69,7 @@ def _connecting_driver(monkeypatch, info_side_effect):
     protocol.send_device_settings = AsyncMock()
     protocol.reset_luba_response = MagicMock()
     monkeypatch.setattr(
-        "dali.driver.serial.serialx.create_serial_connection",
+        "dalidrivers.misc.serial.serialx.create_serial_connection",
         AsyncMock(return_value=(MagicMock(), protocol)),
     )
     return driver, protocol
@@ -159,7 +159,7 @@ async def test_connect_reopens_the_port_after_a_lost_transport(monkeypatch):
     replacement.send_device_info_query = AsyncMock()
     replacement.send_device_settings = AsyncMock()
     monkeypatch.setattr(
-        "dali.driver.serial.serialx.create_serial_connection",
+        "dalidrivers.misc.serial.serialx.create_serial_connection",
         AsyncMock(return_value=(MagicMock(), replacement)),
     )
 
@@ -191,7 +191,7 @@ async def test_send_dali_command_resyncs_after_stale_confirmation(caplog):
         protocol.LubaMsgTxConf(tx_id=2, message=command)
     )
 
-    with caplog.at_level(logging.WARNING, logger="dali.driver"):
+    with caplog.at_level(logging.WARNING, logger="dalidrivers.misc"):
         await protocol.send_dali_command(command)
 
     assert protocol._queue_tx_conf.empty()
