@@ -23,7 +23,7 @@ jobs:
           pip install -e ".[test]"
       - name: Lint with flake8
         run: |
-          flake8 dali --count --show-source --statistics
+          flake8 dalidrivers --count --show-source --statistics
       - name: Test with pytest
         run: |
-          pytest dali/tests
+          pytest dalidrivers

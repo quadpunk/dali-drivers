@@ -1,119 +1,36 @@
-python-dali — lighting control interface
-========================================
+dali-drivers — lighting control interface drivers
+=================================================
 
 DALI ("Digital Addressable Lighting Interface") defines how lighting
 control gear (eg. fluorescent ballasts, LED dimmers) and input devices
 (push buttons, motion detectors, etc.) should interoperate.  It is
 standardised in IEC 62386.
 
-IEC 62386 contains several parts.  Part 101 contains general
-requirements for all system components, part 102 covers general
-requirements for control gear, and part 103 describes general
-requirements for control devices.  Parts 2xx extend part 102 with
-lamp-specific extensions and parts 3xx extend part 103 with input
-device specific extensions.
-
-This library has been written with reference to the following documents:
-
-- IEC 62386-101:2014 (general requirements for system components)
-- IEC 62386-102:2014 (general requirements for control gear)
-- IEC 62386-103:2014 (general requirements for control devices)
-- IEC 62386-201:2009 (fluorescent lamps)
-- IEC 62386-202:2022 (self-contained emergency lighting)
-- IEC 62386-205:2009 (supply voltage controller for incandescent lamps)
-- IEC 62386-206:2009 (conversion from digital signal into DC voltage)
-- IEC 62386-207:2009 (LED modules)
-- IEC 62386-209:2012 (colour control)
-- IEC 62386-301:2017 (particular requirements for push button input devices)
-- IEC 62386-303:2017 (particular requirements for occupancy sensor input devices)
-- IEC 62386-306:2023 (particular requirements for general purpose input devices)
-- DiiA Guidelines Clarifications & Recommendations for IEC 62386 1.12, June 2026
-
-I do not have copies of the other parts of the standard; they are
-fairly expensive to obtain.  The library is designed to be extensible;
-adding support for the other parts ought to be easy and
-self-contained.
-
-The ``dali.memory`` module supports the extended memory bank
-specifications created and maintained by the `Digital Illumination
-Interface Alliance`_:
-
-- DiiA DALI Part 251 — Memory Bank 1 Extension
-- DiiA DALI Part 252 — Energy Reporting
-- DiiA DALI Part 253 — Diagnostics & Maintenance
+The `python-dali`_ project provides a driver-independent description
+of the DALI protocol. This package provides drivers for some real DALI
+interface hardware.
 
 Python versions supported
 -------------------------
 
 This library currently requires Python version 3.10 or later.
 
-Stability
----------
-
-Some of the code in this project is experimental and its API is
-subject to change. Modules with stable APIs are noted below.
-
 Library structure
 -----------------
 
-- ``dali``
+- ``dalidrivers``
 
-  - ``address`` - Device addressing; stable for gear, not stable for devices
+  - ``misc`` — Code to communicate with physical DALI gateways or
+    services; code in this package does not have a standardised API
 
-  - ``command`` - Command registry, interface to command decoding; stable
-
-  - ``device`` - DALI control devices as defined in IEC 62386; not stable
-
-    - ``general`` - Commands and events from part 103
-
-    - ``helpers`` - Useful functions and classes for working with DALI control devices
-
-    - ``occupancy`` - Commands from part 303
-
-    - ``pushbutton`` - Commands from part 301
-
-    - ``sequences`` - Packaged sequences for working with DALI control devices
-
-  - ``driver`` - Objects to communicate with physical DALI gateways or
-    services; not stable
-
-    - ``base`` - General driver contracts
-
-    - ``hasseb`` - Driver for Hasseb DALI Master
-
-    - ``tridonic`` - Driver for Tridonic DALI USB
-
-    - ``daliserver`` - Driver for https://github.com/onitake/daliserver (needs to be adopted to dali.driver.base API)
-
-    - ``hid`` - asyncio-based drivers for Tridonic DALI USB and hasseb DALI Master
-
-    - ``serial`` - asyncio-based driver for Lunatone LUBA RS232 interfaces
-
-    - ``atxled`` - Driver for ATX LED SERIAL DALI HAT
-
-  - ``exceptions`` - DALI related exceptions
-
-  - ``frame`` - Forward and backward frames; stable
-
-  - ``gear`` - DALI control gear as defined in IEC 62386; stable
-
-    - ``colour`` - Commands from part 209 (Device Type 8)
-
-    - ``emergency`` - Commands from part 202
-
-    - ``general`` - Commands from part 102
-
-    - ``incandescent`` - Commands from part 205
-
-    - ``led`` - Commands from part 207
-
-  - ``memory`` - access to memory banks; not stable
-
-  - ``sequences`` - packaged sequences of commands; stable
-
+  - ``tests``
 
 Contributors
 ------------
+
+These drivers were originally contributed to the `python-dali`_
+project, before being removed in release 1.0; this list of
+contributors includes past contributors to that project.
 
 - Stephen Early (Author)
 
@@ -147,7 +64,7 @@ Contributors
 Copyright
 ---------
 
-python-dali is Copyright (C) 2013–2026 Stephen Early <steve@assorted.org.uk>
+dali-drivers is Copyright (C) 2013–2026 Stephen Early <steve@assorted.org.uk>
 and other contributors.
 
 It is distributed under the terms of the GNU Lesser General Public
@@ -163,5 +80,5 @@ You should have received a copy of the GNU Lesser General Public
 License and GNU General Public License along with this program.  If
 not, see `this link`_.
 
+.. _python-dali: https://github.com/sde1000/python-dali
 .. _this link: https://www.gnu.org/licenses/
-.. _Digital Illumination Interface Alliance: https://www.dali-alliance.org/dali/data.html

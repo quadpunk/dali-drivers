@@ -7,7 +7,7 @@
 /bin/
 /build/
 /dist/
-/python_dali.egg-info/
+/dali_drivers.egg-info/
 /include/
 /lib/
 /local/
@@ -15,7 +15,3 @@
 /MANIFEST
 /pip-selfcheck.json
 /.pybuild
-/debian/debhelper-build-stamp
-/debian/files
-/debian/python3-dali*
-/debian/.debhelper

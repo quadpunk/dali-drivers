@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: testpypi
-      url: https://test.pypi.org/project/python-dali/
+      url: https://test.pypi.org/project/dali-drivers/
     permissions:
       id-token: write
     steps:

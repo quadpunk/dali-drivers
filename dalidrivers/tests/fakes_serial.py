@@ -49,8 +49,8 @@ from urllib.parse import ParseResult, parse_qs
 
 from dali import command, gear, memory
 from dali.device.helpers import DeviceInstanceTypeMapper
-from dali.driver import trace_logging  # noqa: F401
-from dali.driver.serial import DistributorQueue, DriverSerialBase
+from dalidrivers.misc import trace_logging  # noqa: F401
+from dalidrivers.misc.serial import DistributorQueue, DriverSerialBase
 from dali.memory.location import MemoryBank
 from dali.tests import fakes as dali_fakes
 

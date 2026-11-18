@@ -16,7 +16,7 @@ else:
 
 from dali.address import Short
 from dali.command import Command
-from dali.driver.unipi import (
+from dalidrivers.misc.unipi import (
     DALI_NO_RESPONSE,
     RemoteArm,
     SyncUnipiDALIDriver,
@@ -27,8 +27,8 @@ from dali.gear.general import DAPC, Reset
 
 
 class TestRemoteArm(unittest.TestCase):
-    @mock.patch("dali.driver.unipi.ModbusTcpClient")
-    @mock.patch("dali.driver.unipi.ModbusSerialClient")
+    @mock.patch("dalidrivers.misc.unipi.ModbusTcpClient")
+    @mock.patch("dalidrivers.misc.unipi.ModbusSerialClient")
     def setUp(self, mock_tcp, mock_rtu):
         mock_tcp.return_value = mock.MagicMock(spec=ModbusTcpClient)
         mock_rtu.return_value = mock.MagicMock(spec=ModbusSerialClient)
@@ -77,7 +77,7 @@ class TestRemoteArm(unittest.TestCase):
         self.remote_arm_tcp.reboot()
         self.remote_arm_tcp.pymc.write_coil.assert_called_with(1002, 1, unit=1)
 
-    @mock.patch("dali.driver.unipi.RemoteArm.read_regs", return_value=[4])
+    @mock.patch("dalidrivers.misc.unipi.RemoteArm.read_regs", return_value=[4])
     def test_vref(self, mock_read_regs):
         self.assertEqual(self.remote_arm_tcp.Vref(), 3.3)
 
@@ -158,7 +158,7 @@ class TestUnipiDALIDriver(unittest.TestCase):
 
 
 class TestSyncUnipiDALIDriver(unittest.TestCase):
-    @mock.patch("dali.driver.unipi.RemoteArm")
+    @mock.patch("dalidrivers.misc.unipi.RemoteArm")
     def setUp(self, mock_backend):
         self.sync_driver = SyncUnipiDALIDriver()
         self.mock_backend = self.sync_driver.backend
