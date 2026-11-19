@@ -1,4 +1,7 @@
-"""Offline tests for dalidrivers.misc.philips: real report vectors from a MultiOne capture + a fake HID device."""
+"""Offline tests for dalidrivers.misc.philips.
+
+Includes report vectors from MultiOne captures and a fake HID device.
+"""
 import pytest
 
 from dalidrivers.misc import philips as P
@@ -21,7 +24,11 @@ def test_tx_report(value, twice, seq, tail):
     assert len(r) == 64
 
 
-@pytest.mark.parametrize("seq,on,h", [(7, 0, "810715"), (8, 1, "810815000001"), (9, 0, "810915"), (0, 1, "810015000001")])
+@pytest.mark.parametrize(
+    "seq,on,h",
+    [(7, 0, "810715"), (8, 1, "810815000001"),
+     (9, 0, "810915"), (0, 1, "810015000001")],
+)
 def test_power_report(seq, on, h):
     assert P.power_report(seq, on).rstrip(b"\x00") == bytes.fromhex(h)
 
