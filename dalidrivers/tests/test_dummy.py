@@ -27,7 +27,7 @@ from dalidrivers.misc.serial import DriverSerialBase, DriverLubaRs232, DriverSCI
 from dalidrivers.tests.fakes_serial import DriverSerialDummy
 from dali import address, gear
 from dali.gear.colour import QueryColourStatus
-from dali.sequences import QueryDeviceTypes
+from dali.gear.sequences import QueryDeviceTypes
 
 
 class DummyDriverFixtureParts(NamedTuple):
