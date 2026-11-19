@@ -80,7 +80,7 @@ class FakeHid:
                     elif c == 0xC5:
                         status = 1
                         data = (UID[o.dtr0 - 0x0B]
-                                if o.dtr1 == 0 and 0x0B <= o.dtr0 <= 0x12 else 0
+                                if o.dtr1 == 0 and 0x0B <= o.dtr0 <= 0x12 else 0)
                 o.pending, o.polls = (status, data), 0
             elif p[0] == 0x02:
                 o.polls += 1
