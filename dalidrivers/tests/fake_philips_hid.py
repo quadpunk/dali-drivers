@@ -1,6 +1,6 @@
 """Fake `hid` module that models the Philips USB to DALI protocol seen in the captures.
-One DALI control gear on short address 3 with a memory bank 0 UID. Models the 1 kHz idle stream, the stale first
-poll answer and the two-poll latency."""
+One DALI control gear on short address 3 with a memory bank 0 UID.
+Models the 1 kHz idle stream, the stale first poll answer and the two-poll latency."""
 import collections
 import time
 
@@ -40,7 +40,8 @@ class FakeHid:
     # module API
     def enumerate(self, vid, pid):
         return [{"path": b"fake", "manufacturer_string": "Philips Lighting",
-                 "product_string": "Philips USB to DALI", "serial_number": "TEST"}] if (vid, pid) == (0x0471, 3) else []
+                 "product_string": "Philips USB to DALI",
+                 "serial_number": "TEST"}] if (vid, pid) == (0x0471, 3) else []
 
     def device(self):
         return self._Dev(self)
@@ -77,7 +78,9 @@ class FakeHid:
                     if c == 0x91:
                         status, data = 1, 0xFF
                     elif c == 0xC5:
-                        status, data = 1, UID[o.dtr0 - 0x0B] if o.dtr1 == 0 and 0x0B <= o.dtr0 <= 0x12 else 0
+                        status = 1
+                        data = (UID[o.dtr0 - 0x0B]
+                                if o.dtr1 == 0 and 0x0B <= o.dtr0 <= 0x12 else 0
                 o.pending, o.polls = (status, data), 0
             elif p[0] == 0x02:
                 o.polls += 1
